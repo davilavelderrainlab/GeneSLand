@@ -1,0 +1,49 @@
+Package: GeneSLand
+Title: Gene expression patterns analyses
+Version: 0.0.1
+Depends: R (>= 4.1.0)
+Authors@R: 
+    person("Erik", "Bot", , "erik.bot@fht.org", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0000-4304-6402"))
+Description: The package allows easy analyses and visualization of the expression patterns of genes and gene sets.
+  It does so through the definition of the number of samples (like tissues or celltypes) in which a gene/gene set is expressed at different thresholds of expression.
+  This while defining quantitative measurments to describe the statistical significance of the promiscuity or specificity of the gene/gene set.
+License: GPL-2
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports:
+	stats,
+	S4Vectors,
+	scales,
+	graphics,
+	ggrepel,
+	ACTIONet,
+	Matrix,
+	ggplot2,
+	SingleCellExperiment,
+	methods,
+	grDevices,
+	flux,
+	ggpubr,
+	irlba,
+	mclust,
+	ranger,
+	viridis,
+	rlang
+Suggests:
+    knitr,
+    rmarkdown,
+    BiocStyle,
+    testthat (>= 3.0.0),
+    magick
+VignetteBuilder: knitr
+biocViews: 
+	Preprocessing,
+	Transcriptomics,
+	Sequencing, 
+	Normalization,
+	GeneExpression
+Config/testthat/edition: 3
+LazyData: true
+LazyDataCompression: xz
