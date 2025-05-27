@@ -16,6 +16,17 @@ knitr::opts_chunk$set(
 )
 ```
 
+This vignette is a quick guide to use the `GeneSLand` package. 
+GeneSLand (Gene Specificity Landscape) is an R package for comparative transcriptomic analysis following the framework described in Bot and Davila-Velderrain, 2025.
+
+The package can be installed by:
+
+```{r, eval=FALSE}
+install.packages("devtools")
+
+devtools::install_github("https://github.com/davilavelderrainlab/GeneSLand")
+```
+
 ```{r setup}
 library(GeneSLand)
 ```
@@ -28,24 +39,42 @@ library(BiocStyle)
 library(knitr)
 ```
 
-Defining a sample bulk RNA seq object
+To create a Specificity Single Cell Experiment object (`SSCE`), we can provide either a bulk RNAseq dataset, or first create a pseudobulk from a scRNAseq dataset by `get_pseudobulk`.
+
+For this vignette, we will use a randomly generated dataset, which has to be substituted by your own dataset.
 
 ```{r}
 set.seed(123)
 n_profiles <- 50
 n_genes <- 5000
-counts <- matrix(runif(n_genes*n_profiles,1,10), ncol = n_profiles)
-colnames(counts) <- paste0('Cell-', seq(1,dim(counts)[2]))
-rownames(counts) <- paste0('Gene-', seq(1,dim(counts)[1]))
+expression_dataset <- matrix(runif(n_genes*n_profiles,1,10), ncol = n_profiles)
+colnames(expression_dataset) <- paste0('Cell-', seq(1,dim(expression_dataset)[2]))
+rownames(expression_dataset) <- paste0('Gene-', seq(1,dim(expression_dataset)[1]))
 ```
 
-Now create the SSCE
-
+To create the SSCE, just run `createSSCE`:
+ 
 ```{r, results='hide', message=FALSE}
-ssce <- createSSCE(xProfiles = counts)
+ssce <- createSSCE(xProfiles = expression_dataset)
 ```
 
-Now plot the 2D landscape
+The obtained SSCE now contains several informations: under `assays` there are, for each gene, the expression breadth (B) score for the 50 expression level (L) bins. Additionally, the `AUC`, `dRate`, `lbSpec` and initial B scores can be easily accessed by:
+
+```{r, eval=FALSE}
+#AUC
+ssce$AUC
+
+#dRate
+ssce$dRate
+
+#lbSpec
+ssce$lbSpec
+
+#initial B score
+ssce$initB
+```
+
+By using `createSSCE` we also built the 2D gene specificity landscape, which we can easily visualize by `plotSSCE`, along with the specificity scores:
 
 ```{r}
 plotSSCE(ssce)
@@ -57,34 +86,49 @@ plotSSCE(ssce, values = 'dRate')
 plotSSCE(ssce, values = 'lbSpec')
 ```
 
-Now plot specific lines
+In the plot each dot is a gene, and the vicinity in the plot indicates a similar expression behavior. 
+When the specificity scores are shown, a darker color is given to genes with lower values, whereas a brighter color corresponds to genes with high values.
+
+We can also plot the LB lines for a gene or multiple genes:
 
 ```{r}
 plot_lines_SSCE(ssce, gene = 'Gene-1')
-plot_multiple_lines_SSCE(ssce, genes = c('Gene-1', 'Gene-2'))
+plot_multiple_lines_SSCE(ssce, genes = c('Gene-1', 'Gene-2'), genes_colors = c('red', 'blue'))
 ```
 
-Do the same for gene groups
+The line shows how many cell types/tissues express the gene more than the expression level bin. 
+So, if for Gene-1 the line has a B value of 0.5 at L = 20, it means that 50% of the cell types express Gene-1 more than 20. 
+The bin values (like 20 in this case) are not counts, but obtained by dividing the expression range in the dataset (from maximum to minimum expression) in 50 equally distant parts. 20 indicates the expression value that is 20/50 of the maximum expression value.
+
+# Gene groups SSCE
+
+We can also create SSCEs starting from gene sets of choice, like Gene Ontology Biological Processes, or HUGO gene groups. To do so, we just need to provide a list of gene sets, in which each element is a gene set and contains a series of genes.
+
+For this example, we just randomly divided our genes into 26 groups.
 
 ```{r}
-gene_groups <- split(rownames(counts), sample(LETTERS, nrow(counts), replace = TRUE))
-ssce_groups <- createSSCE(counts, geneGroups = gene_groups, nRand = 20)
+gene_groups <- split(rownames(expression_dataset), sample(LETTERS, nrow(expression_dataset), replace = TRUE))
+ssce_groups <- createSSCE(expression_dataset, geneGroups = gene_groups, nRand = 20)
 ```
 
 If you want to add the scores significance or the intra-group variability after creating the SSCE, 
-you can:
+you can by using `compute_significance_SSCE` and `compute_variability_SSCE`:
 
 ```{r}
 ssce_groups <- compute_significance_SSCE(ssce_groups)
 ssce_groups <- compute_variability_SSCE(ssce_groups)
 ```
 
-Now plot specific lines
+The score significance indicates how statistically significant are the scores compared to a random gene sets with the same number of genes, whereas the variability shows how homogeneous the gene set is in terms of individual scores.
+
+As we did for single genes, we can now plot the related LB lines:
 
 ```{r}
 plot_lines_SSCE(ssce_groups, gene = 'Z')
-plot_multiple_lines_SSCE(ssce_groups, genes = c('Z', 'A'))
+plot_multiple_lines_SSCE(ssce_groups, genes = c('Z', 'A'), genes_colors = c('red', 'blue'))
 ```
+
+Now the plot shows also the intra-gene set variability (dashed black line), but also the random distribution in grey, along with its variability (dashed grey line).
 
 ```{r}
 sessionInfo()
