@@ -63,7 +63,7 @@ mapSSCE <- function(new_profiles,
 
   new_counts <- lapply(new_counts, function(i) {
     m <- as.matrix(i$scores)
-    i$auc <- sum(m[-1,] + m[-nrow(m),])/(2*(dim(m)[1]-1))
+    i$AUC <- sum(m[-1,] + m[-nrow(m),])/(2*(dim(m)[1]-1))
     return(i)
   })
 

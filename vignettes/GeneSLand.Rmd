@@ -27,6 +27,8 @@ install.packages("devtools")
 devtools::install_github("https://github.com/davilavelderrainlab/GeneSLand")
 ```
 
+And then loaded:
+
 ```{r setup}
 library(GeneSLand)
 ```
@@ -129,6 +131,33 @@ plot_multiple_lines_SSCE(ssce_groups, genes = c('Z', 'A'), genes_colors = c('red
 ```
 
 Now the plot shows also the intra-gene set variability (dashed black line), but also the random distribution in grey, along with its variability (dashed grey line).
+
+# Map new lines on existing SSCEs
+
+If we want to compare the expression behavior of genes in different contexts, an easy visualization can be obtained by mapping the LB behavior of genes onto an existing SSCE and see how they deviate. To do so, we just need to run the `mapSSCE` function giving a SSCE, the new expression profiles and the wanted gene or genes. Also in this case, we will generate the new profiles randomly.
+
+```{r}
+set.seed(123)
+n_profiles <- 50
+n_genes <- 5000
+new_profiles <- matrix(runif(n_genes*n_profiles,1,10), ncol = n_profiles)
+colnames(new_profiles) <- paste0('NewCell-', seq(1,dim(new_profiles)[2]))
+rownames(new_profiles) <- paste0('Gene-', seq(1,dim(new_profiles)[1]))
+```
+
+We can now map the new profiles:
+
+```{r}
+mapped_ssce <- mapSSCE(new_profiles = new_profiles, ssce = ssce, genes = 'Gene-1')
+```
+
+In the `mapped_ssce` object we now have the new coordinates of the gene (under `Coordinates`), the `LineObject`, with the B values and the AUC, dRate and lbSpec scores, and the plot, which can be visualized by:
+
+```{r}
+mapped_ssce$Plot
+```
+
+From the plot we can easily see where the new gene (or genes) end up compared to the previous context.
 
 ```{r}
 sessionInfo()
