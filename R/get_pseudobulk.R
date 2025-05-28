@@ -19,7 +19,7 @@ get_pseudobulk <- function(expression_matrix,
   Ugroups <- sort(names(which(table(membership_vector)>1)))
   pseudobulk <- do.call(cbind,
                  lapply(Ugroups,
-                        function(i) {Matrix::rowSums(as(expression_matrix[,membership_vector==i],
+                        function(i) {Matrix::rowSums(methods::as(expression_matrix[,membership_vector==i],
                                                         "sparseMatrix"))}))
   colnames(pseudobulk) <- Ugroups
   rownames(pseudobulk) <- rownames(expression_matrix)
