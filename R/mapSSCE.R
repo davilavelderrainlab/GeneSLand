@@ -29,7 +29,9 @@
 #' profile <- matrix(sample(seq(1, 100, by = 0.1), size = 1000, replace = TRUE), ncol=100)
 #' rownames(profile) <- paste0('Gene-', seq(1, nrow(profile)))
 #' out <- createSSCE(profile)
-#' mapped_out <- mapSSCE(profile[2,], ssce = out, genes = 'Gene-1')
+#' new_profile <- matrix(sample(seq(1, 100, by = 0.1), size = 1000, replace = TRUE), ncol=100)
+#' rownames(new_profile) <- paste0('Gene-', seq(1, nrow(new_profile)))
+#' mapped_out <- mapSSCE(new_profile, ssce = out, genes = 'Gene-1')
 mapSSCE <- function(new_profiles,
                     ssce,
                     genes,
