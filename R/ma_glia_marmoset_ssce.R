@@ -12,4 +12,10 @@
 #' }
 #'
 #' @source Processed from Ma et al. marmoset glia subtypes pseudobulk
-"ma_glia_marmoset_ssce"
+#' @export
+ma_glia_marmoset_ssce <- function() {
+  filepath <- system.file("extdata", paste0("ma_glia_marmoset_ssce", ".rda"), package = "GeneSLand")
+  if (filepath == "") stop("File not found.")
+  obj_name <- load(filepath)
+  get(obj_name)
+}

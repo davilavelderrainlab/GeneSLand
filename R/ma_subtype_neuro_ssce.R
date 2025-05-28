@@ -10,4 +10,10 @@
 #' }
 #'
 #' @source Processed from Ma et al. human neuron subtypes pseudobulk
-"ma_subtype_neuro_ssce"
+#' @export
+ma_subtype_neuro_ssce <- function() {
+  filepath <- system.file("extdata", paste0("ma_subtype_neuro_ssce", ".rda"), package = "GeneSLand")
+  if (filepath == "") stop("File not found.")
+  obj_name <- load(filepath)
+  get(obj_name)
+}

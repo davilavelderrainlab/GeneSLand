@@ -12,4 +12,10 @@
 #' }
 #'
 #' @source Processed from Ma et al. rhesus excitatory neurons subtypes pseudobulk
-"ma_exn_rhesus_ssce"
+#' @export
+ma_exn_rhesus_ssce <- function() {
+  filepath <- system.file("extdata", paste0("ma_exn_rhesus_ssce", ".rda"), package = "GeneSLand")
+  if (filepath == "") stop("File not found.")
+  obj_name <- load(filepath)
+  get(obj_name)
+}

@@ -12,4 +12,11 @@
 #' }
 #'
 #' @source Processed from Ma et al. rhesus neuron subtypes pseudobulk
-"ma_neu_rhesus_ssce"
+#' @export
+ma_neu_rhesus_ssce <- function() {
+  filepath <- system.file("extdata", paste0("ma_neu_rhesus_ssce", ".rda"), package = "GeneSLand")
+  if (filepath == "") stop("File not found.")
+  obj_name <- load(filepath)
+  get(obj_name)
+}
+
