@@ -40,6 +40,16 @@ mapSSCE <- function(new_profiles,
                     add_one = FALSE,
                     ...) {
 
+  if(methods::is(new_profiles, 'SingleCellExperiment')) {
+    if('logcounts' %in% names(SummarizedExperiment::assays(new_profiles))) {
+      new_profiles <- SingleCellExperiment::logcounts(new_profiles)
+    } else {
+      if('counts' %in% names(SummarizedExperiment::assays(new_profiles))) {
+        new_profiles <- SingleCellExperiment::counts(new_profiles)
+      }
+    }
+  }
+
   if(is.list(genes)) {
     genes <- lapply(genes, function(i) {i[which(i %in% rownames(new_profiles))]})
     genes <- genes[which(unlist(lapply(genes, length)) > 1)]
@@ -51,6 +61,7 @@ mapSSCE <- function(new_profiles,
     new_scores <- do.call(cbind, lapply(new_counts, function(i) {i$scores}))
 
   } else {
+    genes <- genes[which(genes %in% rownames(new_profiles))]
     new_counts <- lapply(genes,
                          get_lb_scores,
                          xProfiles = new_profiles,

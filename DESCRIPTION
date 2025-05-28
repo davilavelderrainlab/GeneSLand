@@ -30,7 +30,8 @@ Imports:
 	mclust,
 	ranger,
 	viridis,
-	rlang
+	rlang,
+	SummarizedExperiment
 Suggests:
     knitr,
     rmarkdown,
