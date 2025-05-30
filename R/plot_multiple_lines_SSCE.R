@@ -35,6 +35,28 @@ plot_multiple_lines_SSCE <- function(ssce,
                                      linewidths=NULL,
                                      ...) {
 
+  if(length(genes) == 1) {
+    if(is.null(genes_colors)) {
+      gene_color <- 'black'
+    } else {
+      gene_color <- genes_colors[1]
+    }
+    if(is.null(linewidths)) {
+      linewidth <- 2
+    } else {
+      linewidth <- linewidths[1]
+    }
+    return(plot_lines_SSCE(ssce,
+                    gene = genes,
+                    addLines = addLines,
+                    Rand = Rand,
+                    Intra = Intra,
+                    where_zero = where_zero,
+                    gene_color = gene_color,
+                    linewidth = linewidth,
+                    ...))
+  }
+
   if(is.null(genes_colors)) {
     genes_colors <- rep('black', length(genes))
   }
