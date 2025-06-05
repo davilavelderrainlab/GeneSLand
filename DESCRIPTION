@@ -18,7 +18,6 @@ Imports:
 	scales,
 	graphics,
 	ggrepel,
-	ACTIONet,
 	Matrix,
 	ggplot2,
 	SingleCellExperiment,
