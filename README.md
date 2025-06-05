@@ -14,7 +14,7 @@ GeneSLand contains functions to:
 
 In the [vignette], we provide an example on how to build and visualize a SSCE.
 
-# Basic installation
+# Installation
 
 To install `GeneSLand` from GitHub:
 
