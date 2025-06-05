@@ -2,15 +2,14 @@ GeneSLand (Gene Specificity Landscape) is an R package for comparative
 transcriptomic analysis following the framework described in [Bot and Davila-Velderrain, 2025].
 
 # Analysis tools
-
-GeneSLand contains functions to:
-
-- Create a Specificity Single Cell Experiment Object (`SSCE`)
-- Calculate the Specificity scores (`AUC`, `dRate`, `lbSpec`)
-- Plot the Specificity landscape
-- Plot the expression Breadth-expression Level (LB) lines
-- Map new genes/gene groups on an existing SSCE
-- All the SSCE objects described in the [article]
+ 
+With `GeneSLand` you can:
+ 
+- calculate and visualize gene expression breadth-level (L-B) behavior
+- build and visualize gene specificity landscapes
+- calculate gene specificity scores (`AUC`, `dRate`, `lbSpec`)
+- map genes/gene groups to reference landscapes
+- explore precomputed tissue, cell type, and neuronal specificity landscapes
 
 In the [vignette], we provide an example on how to build and visualize a SSCE.
 
