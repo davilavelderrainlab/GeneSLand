@@ -24,7 +24,7 @@ devtools::install_github("https://github.com/davilavelderrainlab/GeneSLand")
 ```
 
 Additionally, the `GeneSLand` package requires the use of a containerization platform 
-(`Docker` or `Singularity`), which should be chosen according to the computing environment. 
+(`Docker` or `Singularity`). You can choose one according to your computing environment.
 
 ## Docker 
 
