@@ -5,7 +5,7 @@ transcriptomic analysis following the framework described in [Bot and Davila-Vel
  
 With `GeneSLand` you can:
  
-- calculate and visualize gene expression breadth-level (L-B) behavior
+- calculate and visualize gene expression level-breadth (L-B) behavior
 - build and visualize gene specificity landscapes
 - calculate gene specificity scores (`AUC`, `dRate`, `lbSpec`)
 - map genes/gene groups to reference landscapes
