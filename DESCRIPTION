@@ -8,10 +8,10 @@ Authors@R:
 Description: The package allows easy analyses and visualization of the expression patterns of genes and gene sets.
   It does so through the definition of the number of samples (like tissues or celltypes) in which a gene/gene set is expressed at different thresholds of expression.
   This while defining quantitative measurments to describe the statistical significance of the promiscuity or specificity of the gene/gene set.
-License: GPL-2
+License:  MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Imports:
 	stats,
 	S4Vectors,
@@ -28,13 +28,15 @@ Imports:
 	ranger,
 	viridis,
 	rlang,
-	SummarizedExperiment
+	SummarizedExperiment,
+	irlba
 Suggests:
     knitr,
     rmarkdown,
     BiocStyle,
     testthat (>= 3.0.0),
-    magick
+    magick,
+    ACTIONet
 VignetteBuilder: knitr
 biocViews: 
 	Preprocessing,

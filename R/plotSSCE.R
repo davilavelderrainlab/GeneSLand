@@ -65,14 +65,16 @@ plotSSCE <- function(ssce,
                      alpha = alpha_vec,
                      col = border_colors)
 
-    g <- ggplot2::ggplot(df, ggplot2::aes(x = .data$x,
-                                          y = .data$y,
-                                          color = .data$col,
-                                          alpha = .data$alpha,
-                                          fill = .data$fill)) +
-      ggplot2::geom_point(size = size,
-                          fill = df$fill,
-                          color = df$col) +
+    df_bg <- df[is.na(df$fill), ]
+    df_fg <- df[!is.na(df$fill), ]
+
+    g <- ggplot2::ggplot(df, ggplot2::aes(x = .data$x, y = .data$y)) +
+      ggplot2::geom_point(data = df_bg,
+                          ggplot2::aes(color = .data$col, alpha = .data$alpha),
+                          size = size) +
+      ggplot2::geom_point(data = df_fg,
+                          ggplot2::aes(color = .data$col, alpha = .data$alpha),
+                          size = size) +
       ggplot2::theme_void() +
       ggplot2::theme(legend.position = "none")
 

@@ -17,6 +17,24 @@
 add_landscape_SSCE <- function(ssce,
                                addClusters=FALSE) {
 
+  actionet_available <- requireNamespace("ACTIONet", quietly = TRUE)
+
+  if(actionet_available) {
+    G <- ACTIONet::buildNetwork(as.matrix(SingleCellExperiment::counts(ssce)), distance_metric = "l2")
+    o <- irlba::irlba(as.matrix(SingleCellExperiment::counts(ssce)), k = 20)
+    Coords <- ACTIONet::layoutNetwork(G, initial_position = o$v, n_epochs = 500, spread = 1)
+    ssce@colData$x <- Coords$coordinates[,1]
+    ssce@colData$y <- Coords$coordinates[,2]
+    ssce@colData$col <- grDevices::rgb(Coords$colors)
+
+    if (addClusters) {
+      C <- ACTIONet::clusterNetwork(G)
+      C[C %in% as.numeric(names(which(table(C) == 1)))] <- 0
+      ssce@colData$cluster <- C
+    }
+    return(ssce)
+  }
+
   # check the availability of a containerization platform:
   check_docker <- system("which docker",
                          ignore.stdout = TRUE,
@@ -42,7 +60,6 @@ add_landscape_SSCE <- function(ssce,
       return()
     }
   }
-
 
   # tmp dir and I/O
   temp_dir <- tempdir()
@@ -71,9 +88,6 @@ add_landscape_SSCE <- function(ssce,
     "saveRDS(ssce, '/data/output.rds')"
   )
   writeLines(script_content, temp_script) # copy R commands in the script file
-
-
-  #
 
   if (check_docker){
     system2("docker", args = c(
