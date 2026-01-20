@@ -76,7 +76,9 @@ plotSSCE <- function(ssce,
                           ggplot2::aes(color = .data$col, alpha = .data$alpha),
                           size = size) +
       ggplot2::theme_void() +
-      ggplot2::theme(legend.position = "none")
+      ggplot2::theme(legend.position = "none") +
+      ggplot2::scale_color_identity() +
+      ggplot2::scale_alpha_identity()
 
   } else {
     border_colors <- col_vec
@@ -92,7 +94,9 @@ plotSSCE <- function(ssce,
                                             fill = .data$fill)) +
       ggplot2::geom_point(size = size, fill = df$fill, color = df$col) +
       ggplot2::theme_void() +
-      ggplot2::theme(legend.position = "none")
+      ggplot2::theme(legend.position = "none") +
+      ggplot2::scale_color_identity() +
+      ggplot2::scale_alpha_identity()
   }
 
 
