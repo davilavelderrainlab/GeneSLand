@@ -4,14 +4,14 @@
 \alias{computeLB}
 \title{Compute the Level-Breadth scores}
 \usage{
-computeLB(xProfiles, GeneSet, nExpValues = 50)
+computeLB(xProfiles, GeneSet, n_bins = 50)
 }
 \arguments{
 \item{xProfiles}{The expression profiles}
 
 \item{GeneSet}{The gene or gene set of interest}
 
-\item{nExpValues}{Number of expression level bins}
+\item{n_bins}{Number of expression level bins}
 }
 \value{
 The L-B scores as a vector of B scores at increasing values of L bins

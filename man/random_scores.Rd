@@ -4,7 +4,7 @@
 \alias{random_scores}
 \title{Get random scores}
 \usage{
-random_scores(xProfiles, geneGroups, nRand = 100, nExpValues = 50)
+random_scores(xProfiles, geneGroups, nRand = 100, n_bins = 50)
 }
 \arguments{
 \item{xProfiles}{The profiles on which to build the SSCE}
@@ -13,7 +13,7 @@ random_scores(xProfiles, geneGroups, nRand = 100, nExpValues = 50)
 
 \item{nRand}{The number of randomizations to use}
 
-\item{nExpValues}{The number of expression level bins used}
+\item{n_bins}{The number of expression level bins used}
 }
 \value{
 A list with the random scores for each unique length in the

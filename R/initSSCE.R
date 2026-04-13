@@ -29,7 +29,7 @@ initSSCE <- function(xProfiles,
   if(!is.null(geneGroups)) {
     geneGroups <- lapply(geneGroups, function(i) {unique(i[which(i %in% rownames(xProfiles))])})
     geneGroups <- geneGroups[sapply(geneGroups, length)>1]
-    random_list <- random_scores(xProfiles, geneGroups, nRand = nRand)
+    random_list <- random_scores(xProfiles, geneGroups, nRand = nRand, n_bins = n_bins)
     o <- lapply(geneGroups, function(i) {
       return(get_lb_scores(xProfiles = xProfiles,
                            GeneSet = i,
@@ -44,14 +44,15 @@ initSSCE <- function(xProfiles,
       return(get_lb_scores(xProfiles = xProfiles,
                            GeneSet = i,
                            estRand = FALSE,
-                           add_one=add_one))
+                           add_one=add_one,
+                           n_bins = n_bins))
     })
     names(o) <- rownames(xProfiles)
   }
 
   unique_genes <- unique(unlist(geneGroups))
   intrascores <- do.call(cbind, lapply(unique_genes, function(i) {
-     computeLB(xProfiles, GeneSet = i)
+     computeLB(xProfiles, GeneSet = i, n_bins = n_bins)
   }))
   colnames(intrascores) <- unique_genes
 

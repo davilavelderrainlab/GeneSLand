@@ -3,7 +3,7 @@
 #' @param xProfiles The profiles on which to build the SSCE
 #' @param geneGroups The geneGroups used to build the SSCE
 #' @param nRand The number of randomizations to use
-#' @param nExpValues The number of expression level bins used
+#' @param n_bins The number of expression level bins used
 #'
 #' @return A list with the random scores for each unique length in the
 #' geneGroups list, named using 'N' plus the length.
@@ -29,12 +29,12 @@
 random_scores <- function(xProfiles,
                           geneGroups,
                           nRand = 100,
-                          nExpValues = 50) {
+                          n_bins = 50) {
 
   unique_length <- unique(unlist(lapply(geneGroups, length)))
 
   P <- as.matrix(xProfiles)
-  Levs <- seq(0, max(P), length.out = nExpValues)
+  Levs <- seq(0, max(P), length.out = n_bins)
 
   out <- lapply(unique_length, function(l) {
 

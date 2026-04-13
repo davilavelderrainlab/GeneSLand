@@ -71,7 +71,8 @@ mapSSCE <- function(new_profiles,
                          get_lb_scores,
                          xProfiles = new_profiles,
                          estRand = FALSE,
-                         add_one = add_one)
+                         add_one = add_one,
+                         n_bins = n_bins)
     names(new_counts) <- genes
     new_scores <- do.call(cbind, lapply(new_counts, function(i) {i$scores}))
 

@@ -2,7 +2,7 @@
 #'
 #' @param xProfiles The expression profiles
 #' @param GeneSet The gene or gene set of interest
-#' @param nExpValues Number of expression level bins
+#' @param n_bins Number of expression level bins
 #'
 #' @return The L-B scores as a vector of B scores at increasing values of L bins
 #' @export
@@ -14,7 +14,7 @@
 #' computeLB(xProfiles = profile, GeneSet = 'Gene-1')
 computeLB <- function(xProfiles,
                       GeneSet,
-                      nExpValues = 50) {
+                      n_bins = 50) {
 
   P <- as.matrix(xProfiles)
   Pc <- as.matrix(P[intersect(GeneSet, rownames(P)), ])
@@ -22,7 +22,7 @@ computeLB <- function(xProfiles,
     Pc <- t(Pc)
     rownames(Pc) <- GeneSet
   }
-  Levs <- seq(0, max(P), length.out = nExpValues)
+  Levs <- seq(0, max(P), length.out = n_bins)
   Scores <- sapply(Levs, function(i) {
     mean(Matrix::rowMeans(Pc > i))
   })
