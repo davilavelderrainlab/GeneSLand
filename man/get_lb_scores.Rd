@@ -5,13 +5,13 @@
 \title{get_lb_lines_scores
 Defines the promiscuity levels of a gene or a gene set \code{GeneSet} in a given
 set of profiles \code{xProfiles}, defined the number of expression values to use
-as a threshold \code{nExpValues}}
+as a threshold \code{n_bins}}
 \usage{
 get_lb_scores(
   xProfiles,
   GeneSet,
   nRand = 100,
-  nExpValues = 50,
+  n_bins = 50,
   estRand = TRUE,
   highExpression = FALSE,
   random_list = NULL,
@@ -25,7 +25,7 @@ get_lb_scores(
 
 \item{nRand}{Number of random iterations (defaults to 100)}
 
-\item{nExpValues}{The number of expression values to use as threshold to
+\item{n_bins}{The number of expression values to use as threshold to
 compute the promiscuity (defaults to 50)}
 
 \item{estRand}{A boolean variable to determine if the random baseline has to
@@ -56,7 +56,7 @@ of each iteration (\code{random_list}).
 get_lb_lines_scores
 Defines the promiscuity levels of a gene or a gene set \code{GeneSet} in a given
 set of profiles \code{xProfiles}, defined the number of expression values to use
-as a threshold \code{nExpValues}
+as a threshold \code{n_bins}
 }
 \examples{
 set.seed(123)

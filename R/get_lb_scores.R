@@ -1,11 +1,11 @@
 #' get_lb_lines_scores
 #' Defines the promiscuity levels of a gene or a gene set `GeneSet` in a given
 #' set of profiles `xProfiles`, defined the number of expression values to use
-#' as a threshold `nExpValues`
+#' as a threshold `n_bins`
 #'
 #' @param xProfiles The set of profiles to be used
 #' @param GeneSet The gene or gene set of interest
-#' @param nExpValues The number of expression values to use as threshold to
+#' @param n_bins The number of expression values to use as threshold to
 #' compute the promiscuity (defaults to 50)
 #' @param nRand Number of random iterations (defaults to 100)
 #' @param estRand A boolean variable to determine if the random baseline has to
@@ -39,7 +39,7 @@
 get_lb_scores <- function(xProfiles,
                           GeneSet,
                           nRand=100,
-                          nExpValues=50,
+                          n_bins=50,
                           estRand=TRUE,
                           highExpression=FALSE,
                           random_list=NULL,
@@ -47,7 +47,7 @@ get_lb_scores <- function(xProfiles,
 
   P <- as.matrix(xProfiles)
   Pc <- as.matrix(P[intersect(GeneSet, rownames(P)), ])
-  Levs <- seq(0, max(P), length.out = nExpValues)
+  Levs <- seq(0, max(P), length.out = n_bins)
   if (length(GeneSet) == 1) {
     Pc <- t(Pc)
     rownames(Pc) <- GeneSet

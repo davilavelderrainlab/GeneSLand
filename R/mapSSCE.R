@@ -16,6 +16,7 @@
 #' @param add_one If TRUE, to the Scores vector an initial 1 will be added, to
 #' homogeneize the starting point of multiple genes in the computation of the
 #' dRate.
+#' @param n_bins The number of wanted bins. Defaults to 50.
 #' @param ... Additional graphical parameters for geom_label_repel
 #'
 #' @importFrom rlang .data
@@ -40,6 +41,7 @@ mapSSCE <- function(new_profiles,
                     gene_name = 'MappedGene',
                     size_converter=1.5,
                     add_one = FALSE,
+                    n_bins = 50,
                     ...) {
 
   if(methods::is(new_profiles, 'SingleCellExperiment')) {
@@ -58,7 +60,8 @@ mapSSCE <- function(new_profiles,
     new_counts <- lapply(genes, function(i) {get_lb_scores(new_profiles,
                                                            GeneSet = i,
                                                            estRand = FALSE,
-                                                           add_one = add_one)})
+                                                           add_one = add_one,
+                                                           n_bins = n_bins)})
     names(new_counts) <- names(genes)
     new_scores <- do.call(cbind, lapply(new_counts, function(i) {i$scores}))
 

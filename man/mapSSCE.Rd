@@ -13,6 +13,7 @@ mapSSCE(
   gene_name = "MappedGene",
   size_converter = 1.5,
   add_one = FALSE,
+  n_bins = 50,
   ...
 )
 }
@@ -40,6 +41,8 @@ respect to the baseline size}
 \item{add_one}{If TRUE, to the Scores vector an initial 1 will be added, to
 homogeneize the starting point of multiple genes in the computation of the
 dRate.}
+
+\item{n_bins}{The number of wanted bins. Defaults to 50.}
 
 \item{...}{Additional graphical parameters for geom_label_repel}
 }

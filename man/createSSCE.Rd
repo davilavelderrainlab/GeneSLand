@@ -11,7 +11,8 @@ createSSCE(
   compute_significance = FALSE,
   compute_variability = FALSE,
   nRand = 100,
-  add_one = FALSE
+  add_one = FALSE,
+  n_bins = 50
 )
 }
 \arguments{
@@ -34,6 +35,8 @@ geneGroups)}
 \item{add_one}{If TRUE, to the Scores vector an initial 1 will be added, to
 homogeneize the starting point of multiple genes in the computation of the
 dRate.}
+
+\item{n_bins}{The number of wanted bins. Defaults to 50.}
 }
 \value{
 The Specificity SingleCellExperiment object, with AUC, dRate, lbSpec

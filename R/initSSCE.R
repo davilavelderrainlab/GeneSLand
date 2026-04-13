@@ -7,6 +7,7 @@
 #' @param add_one If TRUE, to the Scores vector an initial 1 will be added, to
 #' homogeneize the starting point of multiple genes in the computation of the
 #' dRate.
+#' @param n_bins The number of wanted bins. Defaults to 50.
 #'
 #' @return The Specificity SingleCellExperiment object, with AUC, dRate, lbSpec
 #' and initB values for each gene, containing as counts the Breadth values for
@@ -23,7 +24,8 @@
 initSSCE <- function(xProfiles,
                     geneGroups=NULL,
                     nRand=100,
-                    add_one=FALSE) {
+                    add_one=FALSE,
+                    n_bins = 50) {
   if(!is.null(geneGroups)) {
     geneGroups <- lapply(geneGroups, function(i) {unique(i[which(i %in% rownames(xProfiles))])})
     geneGroups <- geneGroups[sapply(geneGroups, length)>1]
@@ -32,7 +34,8 @@ initSSCE <- function(xProfiles,
       return(get_lb_scores(xProfiles = xProfiles,
                            GeneSet = i,
                            random_list = random_list,
-                           add_one=add_one))
+                           add_one=add_one,
+                           n_bins = n_bins))
     })
     names(o) <- names(geneGroups)
 
