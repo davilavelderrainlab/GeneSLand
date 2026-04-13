@@ -16,8 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette is a quick guide to use the `GeneSLand` package. 
+This vignette is a quick guide to using the `GeneSLand` package. 
 GeneSLand (Gene Specificity Landscape) is an R package for comparative transcriptomic analysis following the framework described in Bot and Davila-Velderrain, 2025.
+The framework consists in subdividing an expression matrix into bins of the same size from the lowest to the highest values of the matrix.
+For each gene (or averaged gene group) and each bin the number of columns of the original expression matrix with an expression higher than the considered bin are counted. 
+The expression bins correspond to the expression Level, while the number of columns with an expression higher than that bin is called expression Breadth.
 
 The package can be installed by:
 
@@ -60,7 +63,14 @@ To create the SSCE, just run `createSSCE`:
 ssce <- createSSCE(xProfiles = expression_dataset)
 ```
 
-The obtained SSCE now contains several informations: under `assays` there are, for each gene, the expression breadth (B) score for the 50 expression level (L) bins. Additionally, the `AUC`, `dRate`, `lbSpec` and initial B scores can be easily accessed by:
+The obtained SSCE now contains several informations: under `assays` there are, for each gene, the expression breadth (B) score for the 50 expression level (L) bins. Additionally, three
+scores are provided: `AUC`, `dRate`, `lbSpec`, together with initial B scores. 
+  - `AUC` corresponds to the area under the L-B curve and relates to the average expression of the gene;
+  - `dRate` corresponds to how quickly the L-B curve drops to zero and relates to the expression variability of the gene;
+  - `lbSpec` corresponds to how specific the expression of a gene is and is computed considering both in how many samples the gene is expressed and in how many samples the expression is
+             much higher than the other samples.
+
+The scores can be easily accessed by:
 
 ```{r, eval=FALSE}
 #AUC
@@ -89,7 +99,7 @@ plotSSCE(ssce, values = 'lbSpec')
 ```
 
 In the plot each dot is a gene, and the vicinity in the plot indicates a similar expression behavior. 
-When the specificity scores are shown, a darker color is given to genes with lower values, whereas a brighter color corresponds to genes with high values.
+When the specificity scores are shown, a darker color is given to genes with lower values, whereas a brighter color corresponds to genes with higher values.
 
 We can also plot the LB lines for a gene or multiple genes:
 
@@ -99,12 +109,14 @@ plot_multiple_lines_SSCE(ssce, genes = c('Gene-1', 'Gene-2'), genes_colors = c('
 ```
 
 The line shows how many cell types/tissues express the gene more than the expression level bin. 
-So, if for Gene-1 the line has a B value of 0.5 at L = 20, it means that 50% of the cell types express Gene-1 more than 20. 
-The bin values (like 20 in this case) are not counts, but obtained by dividing the expression range in the dataset (from maximum to minimum expression) in 50 equally distant parts. 20 indicates the expression value that is 20/50 of the maximum expression value.
+So, if for Gene-1 the line has a B value of 0.5 at L = 20, it means that 50% of the cell types express Gene-1 more than the expression value corresponding to the 20th bin. 
+The bin values (like 20 in this case) are not counts, but obtained by dividing the expression range in the dataset (from maximum to minimum expression) in equally distant parts (50 by default). 
+20 indicates the expression value that is 20/50 of the maximum expression value.
 
 # Gene groups SSCE
 
-We can also create SSCEs starting from gene sets of choice, like Gene Ontology Biological Processes, or HUGO gene groups. To do so, we just need to provide a list of gene sets, in which each element is a gene set and contains a series of genes.
+We can also create SSCEs starting from gene sets of choice, like Gene Ontology Biological Processes, or HUGO gene groups. To do so, we just need to provide a list of gene sets, 
+in which each element is a gene set and contains a series of genes.
 
 For this example, we just randomly divided our genes into 26 groups.
 
@@ -121,7 +133,8 @@ ssce_groups <- compute_significance_SSCE(ssce_groups)
 ssce_groups <- compute_variability_SSCE(ssce_groups)
 ```
 
-The score significance indicates how statistically significant are the scores compared to a random gene sets with the same number of genes, whereas the variability shows how homogeneous the gene set is in terms of individual scores.
+The score significance indicates how statistically significant are the scores compared to a random gene sets with the same number of genes, 
+whereas the variability shows how homogeneous the gene set is in terms of individual scores.
 
 As we did for single genes, we can now plot the related LB lines:
 
@@ -134,7 +147,9 @@ Now the plot shows also the intra-gene set variability (dashed black line), but 
 
 # Map new lines on existing SSCEs
 
-If we want to compare the expression behavior of genes in different contexts, an easy visualization can be obtained by mapping the LB behavior of genes onto an existing SSCE and see how they deviate. To do so, we just need to run the `mapSSCE` function giving a SSCE, the new expression profiles and the wanted gene or genes. Also in this case, we will generate the new profiles randomly.
+If we want to compare the expression behavior of genes in different contexts, an easy visualization can be obtained by mapping the LB behavior of genes onto an existing SSCE 
+and see how they deviate. To do so, we just need to run the `mapSSCE` function giving a SSCE, the new expression profiles and the wanted gene or genes. 
+Also in this case, we will generate the new profiles randomly.
 
 ```{r}
 set.seed(123)
