@@ -57,9 +57,9 @@ If you use `GeneSLand` in your work, please cite
 >
 > Erik Bot & José Davila-Velderrain
 >
-> _bioRxiv_ June 4th, 2025. DOI: [https://doi.org/10.1101/2025.06.04.657813](https://www.biorxiv.org/content/10.1101/2025.06.04.657813v1).
+> _eLife_ April 15th, 2026. DOI: [https://doi.org/10.7554/eLife.110430.1](https://elifesciences.org/reviewed-preprints/110430).
 
-[Bot and Davila-Velderrain, 2025]: https://www.biorxiv.org/content/10.1101/2025.06.04.657813v1
-[article]: https://www.biorxiv.org/content/10.1101/2025.06.04.657813v1
+[Bot and Davila-Velderrain, 2025]: https://elifesciences.org/reviewed-preprints/110430
+[article]: https://elifesciences.org/reviewed-preprints/110430
 [vignette]: https://github.com/davilavelderrainlab/GeneSLand/blob/main/vignettes/GeneSLand.Rmd
 [issues]: https://github.com/davilavelderrainlab/GeneSLand/issues
