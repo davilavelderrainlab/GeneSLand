@@ -40,14 +40,9 @@ initSSCE <- function(xProfiles,
     names(o) <- names(geneGroups)
 
   } else {
-    o <- lapply(rownames(xProfiles), function(i) {
-      return(get_lb_scores(xProfiles = xProfiles,
-                           GeneSet = i,
-                           estRand = FALSE,
-                           add_one = add_one,
-                           n_bins = n_bins))
-    })
-    names(o) <- rownames(xProfiles)
+    o <- get_lb_scores_all_genes(xProfiles = xProfiles,
+                                 add_one = add_one,
+                                 n_bins = n_bins)
   }
 
   unique_genes <- unique(unlist(geneGroups))
@@ -58,7 +53,7 @@ initSSCE <- function(xProfiles,
 
   full_intrascores <- lapply(geneGroups, function(i) {intrascores[,i]})
 
-  Scores <- methods::as(do.call(cbind, lapply(o, function(i) i$scores)), "sparseMatrix")
+  Scores <- Matrix::Matrix(do.call(cbind, lapply(o, function(i) i$scores)), sparse = TRUE)
 
   AUCs <- Matrix::colSums(Scores[-1,] + Scores[-nrow(Scores),])/(2*(dim(Scores)[1]-1))
 
