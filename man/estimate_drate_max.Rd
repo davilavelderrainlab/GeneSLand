@@ -18,5 +18,5 @@ The value of the maximum drate
 Estimate the maximum of the drate
 }
 \examples{
-estimate_drate_max(runif(100, 2, 4))
+GeneSLand:::estimate_drate_max(runif(100, 2, 4))
 }

@@ -8,7 +8,7 @@ initSSCE(
   xProfiles,
   geneGroups = NULL,
   nRand = 100,
-  add_one = FALSE,
+  add_one = TRUE,
   n_bins = 50
 )
 }

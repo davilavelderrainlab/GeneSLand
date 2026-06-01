@@ -32,7 +32,7 @@
 #' 'M' = rownames(profile)[seq(501,550)]))
 #' compute_variability_SSCE(out)
 compute_variability_SSCE <- function(ssce,
-                                     add_one = FALSE) {
+                                     add_one = TRUE) {
 
   scores <- SingleCellExperiment::counts(ssce)
 

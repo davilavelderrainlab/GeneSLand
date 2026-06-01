@@ -22,5 +22,5 @@ set.seed(123)
 profile <- matrix(sample(seq(1, 100, by = 0.1), size = 1000, replace = TRUE), ncol=100)
 rownames(profile) <- paste0('Gene-', seq(1, nrow(profile)))
 out <- createSSCE(profile)
-compute_expression_specificity(profile, out)
+GeneSLand:::compute_expression_specificity(profile, out)
 }

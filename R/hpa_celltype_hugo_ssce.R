@@ -10,7 +10,6 @@
 #' }
 #'
 #' @source Processed from HPA celltypes and HUGO parent terms
-#' @export
 hpa_celltype_hugo_ssce <- function() {
   filepath <- system.file("extdata", paste0("hpa_celltype_hugo_ssce", ".rda"), package = "GeneSLand")
   if (filepath == "") stop("File not found.")

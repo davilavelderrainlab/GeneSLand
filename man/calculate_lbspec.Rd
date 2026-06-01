@@ -24,7 +24,7 @@ set.seed(123)
 p <- matrix(runif(20000,0,10), ncol = 10)
 colnames(p) <- paste0('Column-', seq(1, ncol(p)))
 rownames(p) <- paste0('Gene-', seq(1, nrow(p)))
-out <- get_lb_scores(xProfiles = p,
+out <- GeneSLand:::get_lb_scores(xProfiles = p,
 GeneSet = rownames(p)[sample(seq(1,nrow(p)), 20)])
-calculate_lbspec(out)
+GeneSLand:::calculate_lbspec(out)
 }

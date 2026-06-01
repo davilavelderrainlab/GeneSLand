@@ -36,8 +36,8 @@ createSSCE <- function(xProfiles,
                        compute_significance=FALSE,
                        compute_variability=FALSE,
                        nRand=100,
-                       add_one=FALSE,
-                       n_bins = 50) {
+                       add_one=TRUE,
+                       n_bins=50) {
 
   xProfiles <- filter_zero_rows(xProfiles)
   ssce <- initSSCE(xProfiles = xProfiles,

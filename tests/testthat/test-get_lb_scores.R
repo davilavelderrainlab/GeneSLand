@@ -6,16 +6,16 @@ colnames(counts) <- paste0('Cell-', seq(1,dim(counts)[2]))
 rownames(counts) <- paste0('Gene-', seq(1,dim(counts)[1]))
 
 test_that("Returns a list", {
-  expect_s4_class(get_lb_scores(counts, GeneSet = rownames(counts)[sample(seq(1, nrow(counts)), 100)])
+  expect_s4_class(GeneSLand:::get_lb_scores(counts, GeneSet = rownames(counts)[sample(seq(1, nrow(counts)), 100)])
 , 'SimpleList')
 })
 
 test_that("List of length 7", {
-  expect_equal(length(get_lb_scores(counts, GeneSet = rownames(counts)[sample(seq(1, nrow(counts)), 100)]))
+  expect_equal(length(GeneSLand:::get_lb_scores(counts, GeneSet = rownames(counts)[sample(seq(1, nrow(counts)), 100)]))
                , 7)
 })
 
 test_that("List of length 3", {
-  expect_equal(length(get_lb_scores(counts, GeneSet = rownames(counts)[sample(seq(1, nrow(counts)), 100)], estRand = F))
+  expect_equal(length(GeneSLand:::get_lb_scores(counts, GeneSet = rownames(counts)[sample(seq(1, nrow(counts)), 100)], estRand = F))
                , 3)
 })

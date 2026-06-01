@@ -4,7 +4,7 @@
 \alias{get_drate_SSCE}
 \title{Calculate dRate for a ssce object}
 \usage{
-get_drate_SSCE(ssce, genes = NULL, add_one = FALSE)
+get_drate_SSCE(ssce, genes = NULL, add_one = TRUE)
 }
 \arguments{
 \item{ssce}{The specificity single cell experiment object}

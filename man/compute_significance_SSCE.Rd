@@ -4,7 +4,7 @@
 \alias{compute_significance_SSCE}
 \title{Compute the significance against the random distribution}
 \usage{
-compute_significance_SSCE(ssce, add_one = FALSE)
+compute_significance_SSCE(ssce, add_one = TRUE)
 }
 \arguments{
 \item{ssce}{A ssce built using gene sets}

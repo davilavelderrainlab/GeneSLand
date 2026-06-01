@@ -18,5 +18,5 @@ zscore_to_pval
 Converts Z-scores to P-values
 }
 \examples{
-zscore_to_pval(1.96)
+GeneSLand:::zscore_to_pval(1.96)
 }

@@ -12,7 +12,6 @@
 #' }
 #'
 #' @source Processed from Ma et al. human excitatory neurons subtypes pseudobulk
-#' @export
 ma_exn_human_ssce <- function() {
   filepath <- system.file("extdata", paste0("ma_exn_human_ssce", ".rda"), package = "GeneSLand")
   if (filepath == "") stop("File not found.")

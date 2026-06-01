@@ -10,7 +10,6 @@
 #' }
 #'
 #' @source Processed from HPA tissues
-#' @export
 hpa_tissue_ssce <- function() {
   filepath <- system.file("extdata", paste0("hpa_tissue_ssce", ".rda"), package = "GeneSLand")
   if (filepath == "") stop("File not found.")

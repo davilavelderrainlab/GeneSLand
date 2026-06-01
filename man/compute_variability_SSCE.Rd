@@ -4,7 +4,7 @@
 \alias{compute_variability_SSCE}
 \title{Compute the variability inside the gene set}
 \usage{
-compute_variability_SSCE(ssce, add_one = FALSE)
+compute_variability_SSCE(ssce, add_one = TRUE)
 }
 \arguments{
 \item{ssce}{A ssce built using gene sets}

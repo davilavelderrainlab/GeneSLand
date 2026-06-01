@@ -23,5 +23,5 @@ Compute the Level-Breadth scores
 set.seed(123)
 profile <- matrix(sample(seq(1, 100, by = 0.1), size = 1000, replace = TRUE), ncol=100)
 rownames(profile) <- paste0('Gene-', seq(1, nrow(profile)))
-computeLB(xProfiles = profile, GeneSet = 'Gene-1')
+GeneSLand:::computeLB(xProfiles = profile, GeneSet = 'Gene-1')
 }

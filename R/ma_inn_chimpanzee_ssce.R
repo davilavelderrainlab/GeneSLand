@@ -12,7 +12,6 @@
 #' }
 #'
 #' @source Processed from Ma et al. chimpanzee inhibitory neurons subtypes pseudobulk
-#' @export
 ma_inn_chimpanzee_ssce <- function() {
   filepath <- system.file("extdata", paste0("ma_inn_chimpanzee_ssce", ".rda"), package = "GeneSLand")
   if (filepath == "") stop("File not found.")

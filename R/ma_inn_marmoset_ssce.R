@@ -12,7 +12,6 @@
 #' }
 #'
 #' @source Processed from Ma et al. marmoset inhibitory neurons subtypes pseudobulk
-#' @export
 ma_inn_marmoset_ssce <- function() {
   filepath <- system.file("extdata", paste0("ma_inn_marmoset_ssce", ".rda"), package = "GeneSLand")
   if (filepath == "") stop("File not found.")

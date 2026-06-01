@@ -3,10 +3,9 @@
 #' @inheritParams estimate_drate
 #'
 #' @return The value of the maximum drate
-#' @export
 #'
 #' @examples
-#' estimate_drate_max(runif(100, 2, 4))
+#' GeneSLand:::estimate_drate_max(runif(100, 2, 4))
 estimate_drate_max <- function(y,
                                x=NULL) {
 

@@ -21,5 +21,5 @@ The mean of the drate
 Estimate the mean drate
 }
 \examples{
-estimate_drate_mean(runif(100, 2, 4))
+GeneSLand:::estimate_drate_mean(runif(100, 2, 4))
 }

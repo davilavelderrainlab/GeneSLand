@@ -27,7 +27,7 @@ set.seed(123)
 profile <- matrix(sample(seq(1, 100, by = 0.1), size = 10000000, replace = TRUE), ncol=10)
 rownames(profile) <- paste0('Gene-', seq(1, nrow(profile)))
 colnames(profile) <- paste0('Column-', seq(1, ncol(profile)))
-out <- random_scores(profile,
+out <- GeneSLand:::random_scores(profile,
 geneGroups = list('A' = rownames(profile)[seq(1,50)],
 'B' = rownames(profile)[seq(51,100)],
 'C' = rownames(profile)[seq(101,150)],

@@ -18,5 +18,5 @@ The drate
 Estimate the drate
 }
 \examples{
-estimate_drate(y = runif(100, 2, 5))
+GeneSLand:::estimate_drate(y = runif(100, 2, 5))
 }

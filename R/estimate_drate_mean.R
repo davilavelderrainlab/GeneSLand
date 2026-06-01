@@ -5,10 +5,9 @@
 #' homogeneize the starting point of multiple ys.
 #'
 #' @return The mean of the drate
-#' @export
 #'
 #' @examples
-#' estimate_drate_mean(runif(100, 2, 4))
+#' GeneSLand:::estimate_drate_mean(runif(100, 2, 4))
 estimate_drate_mean <- function(y,
                                 x=NULL,
                                 add_one=FALSE) {

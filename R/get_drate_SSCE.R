@@ -18,7 +18,7 @@
 #' get_drate_SSCE(out)
 get_drate_SSCE <- function(ssce,
                            genes=NULL,
-                           add_one=FALSE) {
+                           add_one=TRUE) {
 
   if(!is.null(genes)) {
     genes <- genes[which(genes %in% colnames(ssce))]

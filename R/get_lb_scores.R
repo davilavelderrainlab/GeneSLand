@@ -27,14 +27,13 @@
 #' If estRand=T, also the random promiscuity scores (`rscores`), the z-score
 #' (`z`) and p-values (`p`) of the difference with random and the random scores
 #' of each iteration (`random_list`).
-#' @export
 #'
 #' @examples
 #' set.seed(123)
 #' p <- matrix(runif(20000,0,10), ncol = 10)
 #' colnames(p) <- paste0('Column-', seq(1, ncol(p)))
 #' rownames(p) <- paste0('Gene-', seq(1, nrow(p)))
-#' out <- get_lb_scores(xProfiles = p,
+#' out <- GeneSLand:::get_lb_scores(xProfiles = p,
 #' GeneSet = rownames(p)[sample(seq(1,nrow(p)), 20)])
 get_lb_scores <- function(xProfiles,
                           GeneSet,
@@ -43,7 +42,7 @@ get_lb_scores <- function(xProfiles,
                           estRand=TRUE,
                           highExpression=FALSE,
                           random_list=NULL,
-                          add_one=FALSE) {
+                          add_one=TRUE) {
 
   P <- as.matrix(xProfiles)
   Pc <- as.matrix(P[intersect(GeneSet, rownames(P)), ])
@@ -61,7 +60,6 @@ get_lb_scores <- function(xProfiles,
     })
   }
 
-  ########################################################################
   if(estRand) {
     if(length(GeneSet) == 1) {
 
@@ -105,7 +103,7 @@ get_lb_scores <- function(xProfiles,
     z[is.na(z)] <- 0
 
   }
-  ########################################################################
+
   drate_mean <- estimate_drate_mean(Scores,
                                     add_one=add_one) * (-1)
 
@@ -134,4 +132,5 @@ get_lb_scores <- function(xProfiles,
   }
 
   return(o)
+
 }

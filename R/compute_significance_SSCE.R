@@ -34,7 +34,7 @@
 #' 'M' = rownames(profile)[seq(501,550)]))
 #' compute_significance_SSCE(out)
 compute_significance_SSCE <- function(ssce,
-                                      add_one=FALSE) {
+                                      add_one=TRUE) {
 
   scores <- SingleCellExperiment::counts(ssce)
 

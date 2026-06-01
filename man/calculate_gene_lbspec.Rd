@@ -13,7 +13,7 @@ calculate_gene_lbspec(scores, high_expression = FALSE)
 expression in specific tissues compared to the rest}
 }
 \value{
-A lbspec score
+An lbspec score
 }
 \description{
 Calculate lbspec for a single gene
@@ -27,5 +27,5 @@ P <- as.matrix(p)
 Pc <- as.matrix(P[intersect(rownames(p),rownames(P)),])
 Levs <- seq(0, max(P), length.out=50)
 Scores <- sapply(Levs, function(i) {mean(rowMeans(Pc>i))})
-calculate_gene_lbspec(Scores)
+GeneSLand:::calculate_gene_lbspec(Scores)
 }

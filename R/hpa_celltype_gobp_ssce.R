@@ -10,7 +10,6 @@
 #' }
 #'
 #' @source Processed from HPA celltypes and Gene Ontology Biological Processes
-#' @export
 hpa_celltype_gobp_ssce <- function() {
   filepath <- system.file("extdata", paste0("hpa_celltype_gobp_ssce", ".rda"), package = "GeneSLand")
   if (filepath == "") stop("File not found.")

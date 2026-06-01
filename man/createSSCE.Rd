@@ -11,7 +11,7 @@ createSSCE(
   compute_significance = FALSE,
   compute_variability = FALSE,
   nRand = 100,
-  add_one = FALSE,
+  add_one = TRUE,
   n_bins = 50
 )
 }

@@ -4,8 +4,7 @@
 #' @param high_expression A boolean variable to prioritize genes that have a higher
 #' expression in specific tissues compared to the rest
 #'
-#' @return A lbspec score
-#' @export
+#' @return An lbspec score
 #'
 #' @examples
 #' set.seed(123)
@@ -16,7 +15,7 @@
 #' Pc <- as.matrix(P[intersect(rownames(p),rownames(P)),])
 #' Levs <- seq(0, max(P), length.out=50)
 #' Scores <- sapply(Levs, function(i) {mean(rowMeans(Pc>i))})
-#' calculate_gene_lbspec(Scores)
+#' GeneSLand:::calculate_gene_lbspec(Scores)
 calculate_gene_lbspec <- function(scores,
                                   high_expression = FALSE) {
 
